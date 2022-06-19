@@ -34,6 +34,22 @@ def index():
         jam_mulai = request.form['jam_mulai']
         jam_akhir = request.form['jam_akhir']
 
+        
+        for data in dataBase:
+            if hari == data[2]:
+                if jam_mulai >= data[3] and jam_mulai <= data[4]:
+                    flash(f'Jadwal tabrakan 1 dengan "{data[1]}";danger')
+                    return redirect(url_for('index'))
+                elif jam_akhir >= data[3] and jam_akhir <= data[4]:
+                    flash(f'Jadwal tabrakan 2 dengan "{data[1]}";danger')
+                    return redirect(url_for('index'))
+                elif data[3] >= jam_mulai and data[3] <= jam_akhir:
+                    flash(f'Jadwal tabrakan 3 dengan "{data[1]}";danger')
+                    return redirect(url_for('index'))
+                elif data[4] >= jam_mulai and data[4] <= jam_akhir:
+                    flash(f'Jadwal tabrakan 4 dengan "{data[1]}";danger')
+                    return redirect(url_for('index'))
+
         try:
             db = db_connection()
             cur = db.cursor()
@@ -54,21 +70,6 @@ def index():
         ''')
         dataBase = cur.fetchall()
         print(dataBase)
-
-        for data in dataBase:
-            if hari == data[2]:
-                if jam_mulai >= data[3] and jam_mulai <= data[4]:
-                    flash(f'Jadwal tabrakan 1 dengan "{data[1]}";danger')
-                    return redirect(url_for('index'))
-                elif jam_akhir >= data[3] and jam_akhir <= data[4]:
-                    flash(f'Jadwal tabrakan 2 dengan "{data[1]}";danger')
-                    return redirect(url_for('index'))
-                elif data[3] >= jam_mulai and data[3] <= jam_akhir:
-                    flash(f'Jadwal tabrakan 3 dengan "{data[1]}";danger')
-                    return redirect(url_for('index'))
-                elif data[4] >= jam_mulai and data[4] <= jam_akhir:
-                    flash(f'Jadwal tabrakan 4 dengan "{data[1]}";danger')
-                    return redirect(url_for('index'))
 
     db = db_connection()
     cur = db.cursor()
