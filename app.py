@@ -33,7 +33,13 @@ def index():
         hari = request.form['hari']
         jam_mulai = request.form['jam_mulai']
         jam_akhir = request.form['jam_akhir']
-
+        
+        db = db_connection()
+        cur = db.cursor()
+        cur.execute('''
+            SELECT * FROM matkul;
+        ''')
+        dataBase = cur.fetchall()
         
         for data in dataBase:
             if hari == data[2]:
@@ -62,14 +68,6 @@ def index():
             db.close()
         except sqlite3.Error as e:
             print(e)
-
-        db = db_connection()
-        cur = db.cursor()
-        cur.execute('''
-            SELECT * FROM matkul;
-        ''')
-        dataBase = cur.fetchall()
-        print(dataBase)
 
     db = db_connection()
     cur = db.cursor()
