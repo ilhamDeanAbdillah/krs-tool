@@ -33,12 +33,12 @@
                 <div class="container rounded shadow">
                     <form method="post" id="form_matkul">
                         <div class="container row">
-                            <div class="mb-3">
+                            <div class="mb-3 mt-3">
                                 <label class="form-label" for="nama_matkul">Nama Matkul</label>
                                 <input class="form-control" type="text" name="nama_matkul" id="nama_matkul">
                             </div>
-                            <div class="col-4 mb-3">
-                                <label for="hari">Hari</label>
+                            <div class="mb-3 col-4">
+                                <label class="form-label" for="hari">Hari</label>
                                 <select class="form-select" id="hari" name="hari" aria-label="Default select example">
                                     <option selected>Pilih hari</option>
                                     <option value="senin">Senin</option>
@@ -50,11 +50,11 @@
                                 </select>
                             </div>
                             <div class="col-4 mb-3">
-                                <label class="form-label text-center" for="jam_mulai">Jam Mulai</label>
+                                <label class="form-label" for="jam_mulai">Jam Mulai</label>
                                 <input type="time" name="jam_mulai" id="jam_mulai" class="form-control">
                             </div>
                             <div class="col-4 mb-3">
-                                <label class="form-label text-center" for="jam_akhir">Jam Akhir</label>
+                                <label class="form-label" for="jam_akhir">Jam Akhir</label>
                                 <input type="time" name="jam_akhir" id="jam_akhir" class="form-control">
                             </div>
                             <div class="mb-3">
@@ -84,11 +84,11 @@
                                 {% for i in data %}
                                 <tr>
                                     <td>{{loop.index}}</td>
-                                    <td>{{i.0}}</td>
                                     <td>{{i.1}}</td>
-                                    <td>{{i.2}}-{{i.3}}</td>
+                                    <td>{{i.2}}</td>
+                                    <td>{{i.3}}-{{i.4}}</td>
                                     <td>
-                                        <a href="{{url_for('delete',id=loop.index)}}" class="btn btn-danger">
+                                        <a href="{{url_for('delete',id=i.0)}}" class="btn btn-danger">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                             </svg>
